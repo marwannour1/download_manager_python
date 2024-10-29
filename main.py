@@ -16,8 +16,7 @@ if token_input:
 
 
 login_payload = {
-    "username": "21P0165@eng.asu.edu.eg",
-    "password": "budget@rg023",
+
     "logintoken": token,
     "rememberusername": "1"
 }
