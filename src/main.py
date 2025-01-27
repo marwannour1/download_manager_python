@@ -12,8 +12,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from getpass import getpass  # For secure password input
 
-Path("logs").mkdir(parents=True, exist_ok=True)
-logging.basicConfig(filename="logs/scraper.log", level=logging.INFO, format="%(asctime)s - [%(levelname)s] - %(message)s")
+
 
 def load_config():
     """
@@ -136,6 +135,7 @@ def login(session, login_url, email, password):
     response = session.post(login_url, data=payload)
     if response.ok and response.url == "https://lms.eng.asu.edu.eg/my/":
         logging.info("Login Successful")
+        print(response.url)
         return True
     else:
         logging.error("Login Failed")
@@ -143,6 +143,10 @@ def login(session, login_url, email, password):
 
 
 if __name__ == "__main__":
+
+    Path("logs").mkdir(parents=True, exist_ok=True)
+    logging.basicConfig(filename="logs/scraper.log", level=logging.INFO, format="%(asctime)s - [%(levelname)s] - %(message)s")
+
     BASE_URL, DOWNLOAD_PATH, EMAIL, PASSWORD, COURSE_FILE = load_config()
     courses = load_courses(COURSE_FILE)
     create_directories(courses, DOWNLOAD_PATH)
@@ -152,7 +156,9 @@ if __name__ == "__main__":
 
 
     if login(session, BASE_URL, EMAIL, PASSWORD):
+
         logging.info("Starting the scraper")
+
         # Start the scraper
     else:
         logging.error("Exiting the scraper")
