@@ -1,2 +1,7 @@
 venv/
 .vscode/
+__pycache__/
+config.py
+config.ini
+.scraper.log
+*.py[cod]
