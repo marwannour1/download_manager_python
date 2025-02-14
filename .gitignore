@@ -1,7 +1,5 @@
-venv/
-.vscode/
+.env
+logs/
 __pycache__/
-config.py
-config.ini
-.scraper.log
 *.py[cod]
+.vscode/
